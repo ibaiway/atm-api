@@ -1,5 +1,5 @@
-import { Request, Response } from "express"
-import { addUser, getAllUsers } from "../services/user-service"
+import { Request, Response } from 'express'
+import { addUser, getAllUsers } from '../services/user-service'
 
 export const createUser = async (req: Request, res: Response) => {
   const user = await addUser(req.body.name)

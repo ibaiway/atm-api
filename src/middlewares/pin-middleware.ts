@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express"
-import { comparePIN } from "../utils/pin-utils"
-import { getDB } from "../database/db"
+import { Request, Response, NextFunction } from 'express'
+import { comparePIN } from '../utils/pin-utils'
+import { getDB } from '../database/db'
 
 export const validatePin = async (
   req: Request,
@@ -12,15 +12,15 @@ export const validatePin = async (
 
   const isValid = await comparePIN(pin, hashedPin)
   if (!isValid) {
-    return res.status(401).json({ message: "Invalid PIN" })
+    return res.status(401).json({ message: 'Invalid PIN' })
   }
   next()
 }
 
 const getHashedPin = async (cardNumber: number) => {
   const db = getDB()
-  const card = await db.get("SELECT pin FROM cards WHERE number = ?", [
-    cardNumber,
+  const card = await db.get('SELECT pin FROM cards WHERE number = ?', [
+    cardNumber
   ])
   return card.pin
 }

@@ -1,8 +1,8 @@
-import { compareValue, hashValue } from "./hash"
+import { compareValue, hashValue } from './hash'
 
 export const generateRandomPIN = (length: number = 4): string => {
-  const digits = "0123456789"
-  let pin = ""
+  const digits = '0123456789'
+  let pin = ''
   for (let i = 0; i < length; i++) {
     pin += digits.charAt(Math.floor(Math.random() * digits.length))
   }
