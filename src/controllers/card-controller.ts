@@ -70,7 +70,7 @@ export const enableCard = async (req: Request, res: Response) => {
   if (!cardNumber) {
     return res.status(400).json({ error: 'Card number is required' })
   }
-  const card = await enableCardByNumber(cardNumber)
+  await enableCardByNumber(cardNumber)
 
   res.status(200).json({ message: 'Card enabled successfully' })
 }
