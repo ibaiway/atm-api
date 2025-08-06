@@ -44,7 +44,8 @@ export async function initDB(filename = ':memory:') {
       name TEXT NOT NULL,
       number TEXT NOT NULL,
       enabled_at TEXT,
-      pin TEXT NOT NULL
+      pin TEXT NOT NULL,
+      card_limit INTEGER NOT NULL DEFAULT 0
     );
   `)
 

@@ -6,15 +6,18 @@ export const validateCardEnabled = async (
   res: Response,
   next: NextFunction
 ) => {
-  const cardNumber = req.body.cardNumber
-  const card = await getCard(cardNumber)
-  if (!card) {
+  const cardNumber = req.params.cardNumber
+  if (!cardNumber) {
+    return res.status(400).json({ error: 'Card number is required' })
+  }
+  const card = await getEnabledCard(cardNumber)
+  if (!card?.enabled_at) {
     return res.status(401).json({ message: 'Card not enabled' })
   }
   next()
 }
 
-const getCard = async (cardNumber: string) => {
+const getEnabledCard = async (cardNumber: string) => {
   const db = getDB()
   const card = await db.get(
     'SELECT * FROM cards WHERE number = ? AND enabled_at IS NOT NULL',

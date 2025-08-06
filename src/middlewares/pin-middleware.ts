@@ -8,7 +8,11 @@ export const validatePin = async (
   next: NextFunction
 ) => {
   const pin = req.body.pin
-  const hashedPin = await getHashedPin(req.body.number)
+  const cardNumber = req.params.cardNumber
+  if (!cardNumber) {
+    return res.status(400).json({ error: 'Card number is required' })
+  }
+  const hashedPin = await getHashedPin(cardNumber)
 
   const isValid = await comparePIN(pin, hashedPin)
   if (!isValid) {
@@ -17,7 +21,7 @@ export const validatePin = async (
   next()
 }
 
-const getHashedPin = async (cardNumber: number) => {
+const getHashedPin = async (cardNumber: string) => {
   const db = getDB()
   const card = await db.get('SELECT pin FROM cards WHERE number = ?', [
     cardNumber
