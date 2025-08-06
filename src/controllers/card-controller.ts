@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import {
   addCard,
+  enableCardByNumber,
   updateCardLimit,
   updateCardPin
 } from '../services/card-service'
@@ -13,19 +14,17 @@ export const createCard = async (req: Request, res: Response) => {
   const pin = generateRandomPIN()
   const hashedPin = await hashPIN(pin)
 
-  await addCard(req.body.accountId, req.body.name, number, null, hashedPin)
+  await addCard(req.body.accountId, req.body.name, number, null, hashedPin, 0)
   res.status(201).json({ number, pin })
 }
 
 export const changeCardPin = async (req: Request, res: Response) => {
   const pin = req.body.newPin
   const cardNumber = req.params.cardNumber
-  console.log('cardNumber', cardNumber)
 
   if (!cardNumber) {
     return res.status(400).json({ error: 'Card number is required' })
   }
-  console.log('cardNumber', cardNumber)
 
   const hashedPin = await hashPIN(pin)
 
@@ -64,4 +63,14 @@ export const changeCardLimit = async (req: Request, res: Response) => {
       throw error
     }
   }
+}
+
+export const enableCard = async (req: Request, res: Response) => {
+  const cardNumber = req.params.cardNumber
+  if (!cardNumber) {
+    return res.status(400).json({ error: 'Card number is required' })
+  }
+  const card = await enableCardByNumber(cardNumber)
+
+  res.status(200).json({ message: 'Card enabled successfully' })
 }

@@ -3,7 +3,8 @@ import { createAccount, getAccounts } from './controllers/account-controller'
 import {
   changeCardLimit,
   changeCardPin,
-  createCard
+  createCard,
+  enableCard
 } from './controllers/card-controller'
 import { createUser, getUsers } from './controllers/user-controller'
 import { initDB } from './database/db'
@@ -30,5 +31,6 @@ app.put(
   validateCardEnabled,
   changeCardLimit
 )
+app.put('/cards/:cardNumber/enable', validatePin, enableCard)
 
 export default app

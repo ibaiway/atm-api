@@ -47,4 +47,29 @@ describe('Cards', () => {
     expect(updateResponse.body.number).toBe('1234567890')
     expect(updateResponse.body.pin).toBe('1234')
   })
+
+  it('should change a card limit', async () => {
+    const cardNumber = '1234567890'
+    const createResponse = await request(app).post('/cards').send({
+      accountId: 1,
+      name: 'nameTest',
+      number: cardNumber
+    })
+
+    const { pin } = createResponse.body
+
+    await request(app).put(`/cards/${cardNumber}/enable`).send({
+      pin
+    })
+
+    const updateResponse = await request(app)
+      .put(`/cards/${cardNumber}/limit`)
+      .send({
+        pin,
+        limit: 1000
+      })
+
+    expect(updateResponse.status).toBe(200)
+    expect(updateResponse.body.message).toBe('Card limit updated successfully')
+  })
 })
