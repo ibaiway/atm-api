@@ -23,3 +23,12 @@ export const updateCardPin = async (cardNumber: string, pin: string) => {
   ])
   return card
 }
+
+export const updateCardLimit = async (cardNumber: string, limit: number) => {
+  const db = getDB()
+  const card = await db.run('UPDATE cards SET limit = ? WHERE number = ?', [
+    limit,
+    cardNumber
+  ])
+  return card
+}
