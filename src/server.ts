@@ -1,5 +1,5 @@
 import express from "express"
-import { createAccount } from "./controllers/account-controller"
+import { createAccount, getAccounts } from "./controllers/account-controller"
 import { initDB } from "./database/db"
 
 await initDB()
@@ -13,5 +13,6 @@ app.get("/", (req, res) => {
 })
 
 app.post("/accounts", createAccount)
+app.get("/accounts", getAccounts)
 
 export default app

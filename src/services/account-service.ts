@@ -8,3 +8,11 @@ export const addAccount = async (userId: number, name: string) => {
   )
   return account
 }
+
+export const getAccountsFromUser = async (userId: number) => {
+  const db = getDB()
+  const accounts = await db.all("SELECT * FROM accounts WHERE user_id = ?", [
+    userId,
+  ])
+  return accounts
+}
