@@ -17,7 +17,9 @@
     "dev": "tsx watch src/index.ts",
     "clean": "rm -rf dist",
     "build": "npm run clean && tsup",
-    "test": "jest"
+    "test:unit": "jest tests/unit",
+    "test:component": "jest tests/component --runInBand",
+    "test": "npm run test:unit && npm run test:component"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -29,7 +31,9 @@
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
+    "@types/supertest": "^6.0.3",
     "jest": "^30.0.5",
+    "supertest": "^7.1.4",
     "ts-jest": "^29.4.1",
     "tsup": "^8.5.0",
     "tsx": "^4.20.3",
