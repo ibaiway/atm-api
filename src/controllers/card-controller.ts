@@ -13,7 +13,7 @@ export const createCard = async (req: Request, res: Response) => {
 }
 
 export const changeCardPin = async (req: Request, res: Response) => {
-  const pin = req.body.pin
+  const pin = req.body.newPin
   const cardNumber = req.body.number
   const hashedPin = await hashPIN(pin)
 
