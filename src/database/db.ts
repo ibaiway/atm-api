@@ -43,7 +43,7 @@ export async function initDB() {
       account_id INTEGER NOT NULL REFERENCES accounts(id),
       name TEXT NOT NULL,
       number TEXT NOT NULL,
-      enabled_at TEXT NOT NULL,
+      enabled_at TEXT,
       pin TEXT NOT NULL
     );
   `)
