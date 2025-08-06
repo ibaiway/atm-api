@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { addCard } from "../services/card-service"
+import { addCard, updateCardPin } from "../services/card-service"
 import { generateRandomPIN, hashPIN } from "../utils/pin-utils"
 
 export const createCard = async (req: Request, res: Response) => {
@@ -10,4 +10,13 @@ export const createCard = async (req: Request, res: Response) => {
 
   await addCard(req.body.accountId, req.body.name, number, null, hashedPin)
   res.status(201).json({ number, pin })
+}
+
+export const changeCardPin = async (req: Request, res: Response) => {
+  const pin = req.body.pin
+  const cardNumber = req.body.number
+  const hashedPin = await hashPIN(pin)
+
+  await updateCardPin(cardNumber, hashedPin)
+  res.status(200).json({ number: cardNumber, pin })
 }

@@ -14,3 +14,12 @@ export const addCard = async (
   )
   return card
 }
+
+export const updateCardPin = async (cardNumber: number, pin: string) => {
+  const db = getDB()
+  const card = await db.run("UPDATE cards SET pin = ? WHERE number = ?", [
+    pin,
+    cardNumber,
+  ])
+  return card
+}

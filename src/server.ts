@@ -1,6 +1,6 @@
 import express from "express"
 import { createAccount, getAccounts } from "./controllers/account-controller"
-import { createCard } from "./controllers/card-controller"
+import { changeCardPin, createCard } from "./controllers/card-controller"
 import { createUser, getUsers } from "./controllers/user-controller"
 import { initDB } from "./database/db"
 
@@ -19,5 +19,6 @@ app.get("/accounts", getAccounts)
 app.post("/users", createUser)
 app.get("/users", getUsers)
 app.post("/cards", createCard)
+app.put("/cards/pin", changeCardPin)
 
 export default app
