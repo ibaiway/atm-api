@@ -19,7 +19,11 @@
     "build": "npm run clean && tsup",
     "test:unit": "jest tests/unit",
     "test:component": "jest tests/component --runInBand",
-    "test": "npm run test:unit && npm run test:component"
+    "test": "npm run test:unit && npm run test:component",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -32,7 +36,13 @@
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
     "@types/supertest": "^6.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "jest": "^30.0.5",
+    "prettier": "^3.6.2",
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.1",
     "tsup": "^8.5.0",

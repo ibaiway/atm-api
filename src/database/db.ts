@@ -1,14 +1,14 @@
-import sqlite3 from "sqlite3"
-import { open, Database } from "sqlite"
+import sqlite3 from 'sqlite3'
+import { open, Database } from 'sqlite'
 
 sqlite3.verbose()
 
 let db: Database
 
-export async function initDB(filename = ":memory:") {
+export async function initDB(filename = ':memory:') {
   db = await open({
     filename: filename,
-    driver: sqlite3.Database,
+    driver: sqlite3.Database
   })
 
   await db.exec(`
@@ -52,6 +52,6 @@ export async function initDB(filename = ":memory:") {
 }
 
 export function getDB(): Database {
-  if (!db) throw new Error("Database not initialized. Call initDB() first.")
+  if (!db) throw new Error('Database not initialized. Call initDB() first.')
   return db
 }

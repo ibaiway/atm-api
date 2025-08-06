@@ -1,6 +1,6 @@
-import { Request, Response } from "express"
-import { addCard, updateCardPin } from "../services/card-service"
-import { generateRandomPIN, hashPIN } from "../utils/pin-utils"
+import { Request, Response } from 'express'
+import { addCard, updateCardPin } from '../services/card-service'
+import { generateRandomPIN, hashPIN } from '../utils/pin-utils'
 
 export const createCard = async (req: Request, res: Response) => {
   const number = req.body.number // TODO: this will need to be generated and checked for uniqueness
