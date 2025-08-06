@@ -6,8 +6,6 @@ import { initDB } from "./database/db"
 import { validateCardEnabled } from "./middlewares/cardenabled-middleware"
 import { validatePin } from "./middlewares/pin-middleware"
 
-await initDB()
-
 const app = express()
 
 app.use(express.json())

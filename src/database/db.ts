@@ -5,9 +5,9 @@ sqlite3.verbose()
 
 let db: Database
 
-export async function initDB() {
+export async function initDB(filename = ":memory:") {
   db = await open({
-    filename: "./dev.db",
+    filename: filename,
     driver: sqlite3.Database,
   })
 
