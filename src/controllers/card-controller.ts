@@ -14,7 +14,14 @@ export const createCard = async (req: Request, res: Response) => {
 
 export const changeCardPin = async (req: Request, res: Response) => {
   const pin = req.body.newPin
-  const cardNumber = req.body.number
+  const cardNumber = req.params.cardNumber
+  console.log('cardNumber', cardNumber)
+
+  if (!cardNumber) {
+    return res.status(400).json({ error: 'Card number is required' })
+  }
+  console.log('cardNumber', cardNumber)
+
   const hashedPin = await hashPIN(pin)
 
   await updateCardPin(cardNumber, hashedPin)
